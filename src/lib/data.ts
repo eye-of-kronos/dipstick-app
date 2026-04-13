@@ -34,6 +34,7 @@ export interface CategoryConfig {
 }
 
 export const questions: Question[] = [
+  // Strategy to Execution Alignment
   {
     id: 1,
     text: "Do delivery teams clearly understand how their backlog connects to business outcomes (revenue, customer value)?",
@@ -44,6 +45,7 @@ export const questions: Question[] = [
     ],
     category: "Strategy to Execution Alignment",
   },
+  // Speed
   {
     id: 2,
     text: "Do delivery teams consistently transform validated ideas into tangible customer value at speed?",
@@ -56,6 +58,17 @@ export const questions: Question[] = [
   },
   {
     id: 3,
+    text: "Do teams deliver meeting or exceeding customer commitment/SLA?",
+    options: [
+      { label: "Rarely", score: 0 },
+      { label: "Sometimes", score: 1 },
+      { label: "Consistently", score: 2 },
+    ],
+    category: "Speed",
+  },
+  // Predictability
+  {
+    id: 4,
     text: "Do you have a clear way to assess delivery progress across iteration or delivery cycle?",
     options: [
       { label: "No", score: 0 },
@@ -65,7 +78,7 @@ export const questions: Question[] = [
     category: "Predictability",
   },
   {
-    id: 4,
+    id: 5,
     text: "Are delivery teams able to spot early warning signals that indicate potential delivery risks?",
     options: [
       { label: "Rarely", score: 0 },
@@ -75,27 +88,7 @@ export const questions: Question[] = [
     category: "Predictability",
   },
   {
-    id: 5,
-    text: "Do teams complete what they start within an iteration or delivery cycle?",
-    options: [
-      { label: "No", score: 0 },
-      { label: "Partially", score: 1 },
-      { label: "Always", score: 2 },
-    ],
-    category: "Commitment",
-  },
-  {
     id: 6,
-    text: "How often does completed work require rework or urgent fixes?",
-    options: [
-      { label: "Often", score: 0 },
-      { label: "Sometimes", score: 1 },
-      { label: "Rarely", score: 2 },
-    ],
-    category: "Quality",
-  },
-  {
-    id: 7,
     text: "Does your delivery engine handle requirement changes while maintaining predictable outcomes?",
     options: [
       { label: "Rarely", score: 0 },
@@ -104,16 +97,29 @@ export const questions: Question[] = [
     ],
     category: "Predictability",
   },
+  // Commitment
+  {
+    id: 7,
+    text: "Do teams complete what they start within an iteration or delivery cycle?",
+    options: [
+      { label: "No", score: 0 },
+      { label: "Partially", score: 1 },
+      { label: "Always", score: 2 },
+    ],
+    category: "Commitment",
+  },
+  // Quality
   {
     id: 8,
-    text: "Do teams deliver meeting or exceeding customer commitment/SLA?",
+    text: "How often does completed work require rework or urgent fixes?",
     options: [
-      { label: "Rarely", score: 0 },
+      { label: "Often", score: 0 },
       { label: "Sometimes", score: 1 },
-      { label: "Consistently", score: 2 },
+      { label: "Rarely", score: 2 },
     ],
-    category: "Speed",
+    category: "Quality",
   },
+  // AI Enablement
   {
     id: 9,
     text: "When tough trade-offs are needed, do leaders use real-time data and AI to decide quickly and confidently?",
