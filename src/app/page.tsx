@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   questions,
   categoryConfigs,
@@ -88,13 +89,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-6 py-5">
+        <div className="max-w-4xl mx-auto px-6 py-5 flex items-center gap-4">
+          <Image src="/pmp_logo.png" alt="PMP Logo" width={160} height={80} />
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-            Delivery Excellence Assessment
+            Delivery Excellence Dipstick
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            Dipstick for Delivery Heads &amp; Product Heads
-          </p>
         </div>
       </header>
 

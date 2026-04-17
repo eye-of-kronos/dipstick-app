@@ -149,20 +149,20 @@ export const categoryConfigs: CategoryConfig[] = [
     maxScore: 2,
     bands: [
       {
-        label: "Low",
+        label: "Fragile",
         color: "red",
         emoji: "🔴",
         scoreRange: [0, 0],
         insight:
-          "The execution lacks alignment with measurable business values increasing risk of misaligned investment.",
+          "High execution risk. Needs Immediate Intervention.",
       },
       {
-        label: "Moderate",
+        label: "Low",
         color: "yellow",
         emoji: "🟡",
         scoreRange: [1, 1],
         insight:
-          "Some linkage between backlog and outcomes exists, but prioritization may still drift from strategic intent.",
+          "The execution lacks alignment with measurable business values increasing risk of misaligned investment.",
       },
       {
         label: "High",
@@ -180,20 +180,28 @@ export const categoryConfigs: CategoryConfig[] = [
     maxScore: 4,
     bands: [
       {
-        label: "Low",
+        label: "Fragile",
         color: "red",
         emoji: "🔴",
         scoreRange: [0, 1],
         insight:
-          "Cycle times are inconsistent or slow. Value realization is delayed, impacting customer responsiveness and competitive positioning.",
+          "High execution risk. Needs immediate intervention.",
+      },
+      {
+        label: "Low",
+        color: "red",
+        emoji: "🔴",
+        scoreRange: [2, 2],
+        insight:
+          "Cycle times are inconsistent or high. Value realization is delayed, impacting customer responsiveness and competitive positioning.",
       },
       {
         label: "Moderate",
         color: "yellow",
         emoji: "🟡",
-        scoreRange: [2, 3],
+        scoreRange: [3, 3],
         insight:
-          "Delivery speed is stable but constrained by bottlenecks, dependency friction, or shifting priorities.",
+          "Delivery speed is moderate but value delivery is constrained by bottlenecks or dependencies, or shifting priorities.",
       },
       {
         label: "High",
@@ -219,20 +227,28 @@ export const categoryConfigs: CategoryConfig[] = [
           "Delivery outcomes are reactive and variance is high. Risks are typically discovered late, leading to escalations and erosion of stakeholder confidence.",
       },
       {
-        label: "Developing",
-        color: "yellow",
-        emoji: "🟡",
+        label: "Low",
+        color: "red",
+        emoji: "🔴",
         scoreRange: [2, 3],
         insight:
-          "Some forecasting discipline exists, but delivery confidence fluctuates. Risk detection and dependency management need strengthening.",
+          "Delivery is unpredictable. Forecasting seems a challenge. Risk detection and dependency management need strengthening.",
+      },
+      {
+        label: "Moderate",
+        color: "yellow",
+        emoji: "🟡",
+        scoreRange: [4, 4],
+        insight:
+          "Delivery is generally predictable. Risks and dependencies and change management need to be focus areas.",
       },
       {
         label: "Mature",
         color: "green",
         emoji: "🟢",
-        scoreRange: [4, 5],
+        scoreRange: [5, 5],
         insight:
-          "Forecasting is data-driven and generally reliable. Risks and dependencies are proactively managed before impacting commitments.",
+          "Delivery is managed well. Risks, dependencies and change management can be strengthened for consistently predictable delivery.",
       },
       {
         label: "Systemic",
@@ -250,20 +266,20 @@ export const categoryConfigs: CategoryConfig[] = [
     maxScore: 2,
     bands: [
       {
-        label: "Low",
+        label: "Fragile",
         color: "red",
         emoji: "🔴",
         scoreRange: [0, 0],
         insight:
-          "Teams frequently overcommit or under-deliver. Iteration integrity is weak, affecting trust and execution rhythm.",
+          "High execution risk. Needs immediate intervention.",
       },
       {
-        label: "Moderate",
+        label: "Low",
         color: "yellow",
         emoji: "🟡",
         scoreRange: [1, 1],
         insight:
-          "Commitment discipline exists but is inconsistently upheld. External dependencies or planning inaccuracies affect team velocity.",
+          "Teams frequently overcommit or under-deliver. Iteration integrity is weak, affecting trust and execution rhythm.",
       },
       {
         label: "High",
@@ -281,20 +297,20 @@ export const categoryConfigs: CategoryConfig[] = [
     maxScore: 2,
     bands: [
       {
-        label: "Low",
+        label: "Fragile",
         color: "red",
         emoji: "🔴",
         scoreRange: [0, 0],
         insight:
-          "High rework or defect leakage suggests quality is inspected in rather than built in. This increases cost and erodes stakeholder confidence.",
+          "Product Quality is Poor. Needs immediate attention.",
       },
       {
-        label: "Moderate",
+        label: "Low",
         color: "yellow",
         emoji: "🟡",
         scoreRange: [1, 1],
         insight:
-          "Quality practices exist but gaps result in occasional rework or production instability.",
+          "High rework or defect leakage suggests quality is inspected in rather than built in. This increases cost and erodes shareholder confidence.",
       },
       {
         label: "High",
@@ -323,17 +339,25 @@ export const categoryConfigs: CategoryConfig[] = [
         label: "Moderate",
         color: "yellow",
         emoji: "🟡",
-        scoreRange: [2, 3],
+        scoreRange: [2, 2],
         insight:
-          "AI is supporting parts of execution, but is not yet embedded into delivery planning and execution.",
+          "AI is supporting parts of execution, but is not yet fully embedded into delivery planning and execution.",
       },
       {
         label: "High",
         color: "green",
         emoji: "🟢",
+        scoreRange: [3, 3],
+        insight:
+          "AI is a focus area for planning and execution.",
+      },
+      {
+        label: "Mature",
+        color: "blue",
+        emoji: "🔵",
         scoreRange: [4, 4],
         insight:
-          "AI augments planning, prioritization, forecasting, risk sensing, and decision-making. Leaders receive proactive insights, reducing subjectivity and improving foresight.",
+          "AI is embedded into planning, prioritization, forecasting, risk sensing, and decision-making. Leaders receive proactive insights, reducing subjectivity and improving foresight.",
       },
     ],
   },
@@ -345,26 +369,32 @@ export const TOTAL_MAX_SCORE = categoryConfigs.reduce(
 );
 
 export function getOverallMaturityZone(score: number, maxScore: number): { label: string; color: string; insight: string } {
-  const pct = score / maxScore;
-  if (pct >= 0.85) {
+  if (score <= 7) {
     return {
-      label: "Excelling",
-      color: "green",
-      insight: "Delivery meeting the business goals and market demands.",
+      label: "Execution Risk Zone",
+      color: "red",
+      insight: "Execution Risk Zone, Requires Intervention.",
     };
-  } else if (pct >= 0.6) {
+  } else if (score <= 14) {
     return {
-      label: "Progressing",
+      label: "Constrained",
       color: "yellow",
       insight:
-        "Delivery is on track but has areas that need attention to consistently meet business goals.",
+        "Delivery Engine is Constrained, Requires Strengthening.",
+    };
+  } else if (score <= 18) {
+    return {
+      label: "Performing",
+      color: "green",
+      insight:
+        "Delivery Engine is Performing and Outcome Measurable.",
     };
   } else {
     return {
-      label: "Needs Attention",
-      color: "red",
+      label: "Excelling",
+      color: "blue",
       insight:
-        "Significant gaps exist in delivery maturity. Focused intervention is needed to align execution with business outcomes.",
+        "Delivery meeting the business goals and market demands.",
     };
   }
 }
